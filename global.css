@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 240 100% 2%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 35% 8% / 0.15;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 35% 8% / 0.9;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 280 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 100% 40% / 0.2;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 30% 15% / 0.5;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 320 100% 50% / 0.3;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 50% 25% / 0.3;
+    --input: 240 50% 15% / 0.5;
+    --ring: 280 100% 60%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 100% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 35% 8% / 0.2;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 35% 8% / 0.95;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 280 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 100% 45% / 0.25;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 30% 20% / 0.6;
+    --muted-foreground: 0 0% 75%;
+
+    --accent: 320 100% 55% / 0.4;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 50% 30% / 0.4;
+    --input: 240 50% 20% / 0.6;
+    --ring: 280 100% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+  }
+
+  /* Homepage specific animated background */
+  .homepage-bg {
+    background: linear-gradient(
+      -45deg,
+      hsl(240, 100%, 2%),
+      hsl(260, 80%, 8%),
+      hsl(280, 90%, 6%),
+      hsl(300, 85%, 10%),
+      hsl(320, 100%, 8%),
+      hsl(240, 100%, 4%)
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Glassmorphic effects */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.25),
+      inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .glass-nav {
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Floating animation */
+  .float {
+    animation: floating 6s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* Glow effects */
+  .glow {
+    box-shadow:
+      0 0 20px hsl(280, 100%, 60%),
+      0 0 40px hsl(280, 100%, 60%),
+      0 0 60px hsl(280, 100%, 60%);
+  }
+
+  .glow-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    box-shadow:
+      0 0 30px hsl(280, 100%, 60%),
+      0 0 60px hsl(280, 100%, 60%),
+      0 0 90px hsl(280, 100%, 60%);
+  }
+
+  /* Animated background particles */
+  .particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: particleFloat 20s linear infinite;
+  }
+
+  @keyframes particleFloat {
+    from {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Pulse animation */
+  .pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  /* Sliding animations */
+  .slide-in-left {
+    animation: slideInLeft 0.8s ease-out;
+  }
+
+  .slide-in-right {
+    animation: slideInRight 0.8s ease-out;
+  }
+
+  .slide-in-up {
+    animation: slideInUp 0.8s ease-out;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
